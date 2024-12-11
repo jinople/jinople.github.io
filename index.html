@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown & Number Display</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.numbers {
+  font-size: 24px;
+  margin: 10px;
+}
+.timer {
+  font-size: 48px;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Your Numbers</h1>
+<div class="numbers">Number 1: <span id="number1">42</span></div>
+<div class="numbers">Number 2: <span id="number2">78</span></div>
+<div class="numbers">Number 3: <span id="number3">96</span></div>
+
+<div class="timer" id="countdown"></div>
+
+<script>
+// Function to update the countdown timer
+function countdown() {
+  const endDate = new Date('December 12, 2023 00:00:00').getTime();
+  const now = new Date().getTime();
+  const remainingTime = endDate - now;
+
+  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+  if (remainingTime < 0) {
+    clearInterval(interval);
+    document.getElementById("countdown").innerText = "Time's Up!";
+  }
+}
+
+// Initialize countdown timer
+const interval = setInterval(countdown, 1000);
+</script>
+
+</body>
+</html>
