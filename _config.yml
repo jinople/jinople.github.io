@@ -1,0 +1,5 @@
+title: My GitHub Page
+description: test
+baseurl: ""
+url: "https://jinople.github.io"
+theme: minima  # Example theme for Jekyll
